@@ -1,0 +1,108 @@
+<template class="section-template">
+<div id="welcome">
+	
+<link href="https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic" rel="stylesheet" type="text/css">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+<link rel="stylesheet" href="assets/css/style.css">
+
+<div id="add_directory">
+				<input type="file"   id="curr_music_dir"  webkitdirectory />
+</div>
+  <div class="player">
+	<div class="cover"></div>
+	<nav>
+		<div class="left">
+			<i class="material-icons">menu</i>
+			<h6>Playlist</h6>
+		</div>
+		<div class="right">
+			<i class="material-icons search">search</i>
+			<i class="material-icons">queue_music</i>
+		</div>
+	</nav>
+	<div id="player-ui">
+		
+	</div>
+	<div class="btn">
+<!-- 		<i class="material-icons">shuffle</i> -->
+	</div>
+	<div id="music_list">
+		
+	</div>
+</div>
+  
+
+</div>
+<script>
+var path = require('path');	
+const fs = require("fs");
+var directoryPath = path.join(__dirname, '.');
+dir='.';
+
+
+
+curr_status="" // playing
+curr_status_icon="play_arrow" ; // equalizer
+/*-------------------- function for normal behavior---------------*/
+$("#curr_music_dir").change( function (){
+   directoryPath=document.getElementById("curr_music_dir").files[0].path; 
+   $("#music_list").empty();
+	 
+   fs.readdir(directoryPath, function (err, files) {
+//handling error
+if (err) {
+return console.log('Unable to scan directory: ' + err);
+}
+//listing all files using forEach
+files.forEach(function (file) {
+// Do whatever you want to do with the file
+song_path=directoryPath+"/"+file;
+console.log(song_path);
+param='\''+song_path+'\',\''+file+'\'';
+console.log(param);
+str='<div class="song"><div class="info"><div class="img"></div><div class="titles">'+file+'</div></div><div class="state '+curr_status+'"><i class="material-icons"  onclick="play_current('+param+')">'+curr_status_icon+'</i>'+'</div></div>';
+$("#music_list").append(str);
+});
+});
+});
+/*-------------------- function for playing song---------------*/
+function play(){
+	alert("hello");
+}
+function play_current(song_path,song_name){
+	$("#player-ui").empty();
+song_name=song_name;
+song_path=song_path;
+	song_to_play='<div class="title"><h3><audio id="play_it" src="'+song_path+'" ></audio></h3></div><div class="small"><i class="material-icons" >replay</i><p>'+song_name+'</p><i class="material-icons">volume_up</i></div><div class="progress"><div class="played"><div class="circle"></div></div></div><div class="controls"><i class="material-icons">skip_previous</i><i class="material-icons" id="curr_play" onClick="play_toggle()" >play_arrow</i><i class="material-icons">skip_next</i>'
+
+/*	song_to_play='<div><audio controls autoplay><source src="'+filename+'" type="audio/mpeg">Your browser does not support the audio element.</audio></div>';*/
+
+	console.log(song_to_play)
+	$("#player-ui").append(song_to_play);
+	var audio = document.getElementById("play_it");
+ //
+ audio.autoplay = true;
+}
+play_status=1;  // 1 pause 2 play
+function play_toggle(){
+	$("#play_it").autoplay=true;
+	if(play_status==1){
+		 $("#play_it")[0].play();
+		 play_status=2;
+	}
+	else{
+		$("#play_it")[0].pause();
+		 play_status=1;
+	}
+ 
+}
+  
+</script>
+
+</template>

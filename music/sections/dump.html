@@ -1,0 +1,119 @@
+<div class="song">
+			<div class="info">
+				<div class="img first"></div>
+				<div class="titles">
+					<h5>Hello</h5>
+					<p>Adele</p>
+				</div>
+			</div>
+			<div class="state playing">
+				<i class="material-icons">equalizer</i>
+			</div>
+		</div>
+		<div class="song">
+			<div class="info">
+				<div class="img second"></div>
+				<div class="titles">
+					<h5>Californication</h5>
+					<p>Red Hot Chili Pepers</p>
+				</div>
+			</div>
+			<div class="state">
+				<i class="material-icons">play_arrow</i>
+			</div>
+		</div>
+		<div class="song">
+			<div class="info">
+				<div class="img third"></div>
+				<div class="titles">
+					<h5>6 INCH</h5>
+					<p>beyoncé</p>
+				</div>
+			</div>
+			<div class="state">
+				<i class="material-icons">play_arrow</i>
+			</div>
+		</div>
+		<div class="song">
+			<div class="info">
+				<div class="img fourth"></div>
+				<div class="titles">
+					<h5>Purple rain</h5>
+					<p>Prince & The Revolution</p>
+				</div>
+			</div>
+			<div class="state">
+				<i class="material-icons">play_arrow</i>
+			</div>
+		</div>
+		<div class="song">
+			<div class="info">
+				<div class="img fifth"></div>
+				<div class="titles">
+					<h5>Purple rain</h5>
+					<p>Prince & The Revolution</p>
+				</div>
+			</div>
+			<div class="state">
+				<i class="material-icons">play_arrow</i>
+			</div>
+		</div>
+
+		
+<script>
+var path = require('path');	
+ const fs = require("fs");
+ var directoryPath = path.join(__dirname, '.');
+ dir='.';
+ $("#curr_music_dir").change( function (){
+   directoryPath=document.getElementById("curr_music_dir").files[0].path; 
+   $("#music_list").empty();
+	 
+   fs.readdir(directoryPath, function (err, files) {
+//handling error
+if (err) {
+return console.log('Unable to scan directory: ' + err);
+}
+//listing all files using forEach
+files.forEach(function (file) {
+// Do whatever you want to do with the file
+console.log(file);
+str='<div class="song">\
+		<div class="info">\
+				<div class="img first"></div>\
+				<div class="titles">'\
+				+file+
+				'</div>\
+			</div>\
+			<div class="state playing">\
+				<i class="material-icons">equalizer</i>\
+			</div>\
+		</div>';
+$("#music_list").append(str);
+});
+});
+    });   
+   
+  
+
+song_to_play='<div class="title"><h3>'+song_name+'</h3></div><div class="small"><i class="material-icons">replay</i><p>'+song_info+'</p><i class="material-icons">volume_up</i></div><div class="progress"><div class="played"><div class="circle"></div></div></div><div class="controls"><i class="material-icons">skip_previous</i><i class="material-icons">play_arrow</i><i class="material-icons">skip_next</i>'
+</script>
+
+<div class="title">
+			<h3>Hello</h3>
+		</div>
+		<div class="small">
+			<i class="material-icons">replay</i>
+			<p>Adele</p>
+			<i class="material-icons">volume_up</i>
+		</div>
+		<div class="progress">
+			<div class="played">
+				<div class="circle"></div>
+			</div>
+		</div>
+		<div class="controls">
+			<i class="material-icons">skip_previous</i>
+			<i class="material-icons" onclick="play()">play_arrow</i>
+			<i class="material-icons">skip_next</i>
+		</div>

@@ -1,0 +1,17 @@
+.Row
+{
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+    max-height: 400px;
+}
+.Column
+{
+    display: table-cell;
+    background-color: red; /*Optional*/
+}
+#player{
+	height: 300px;
+	width:100px;
+}

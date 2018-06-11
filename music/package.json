@@ -1,0 +1,21 @@
+{
+  "name": "electron-quick-start",
+  "version": "1.0.0",
+  "description": "music app",
+  "main": "main.js",
+  "keywords": [
+    "Electron",
+    "music",
+    "app"
+  ],
+  "author": "RDY",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^2.0.0",
+    "electron-packager": "^8.7.2",
+    "electron-winstaller": "^2.6.4"
+  },
+  "dependencies": {
+    "electron-reload": "^1.2.2"
+  }
+}

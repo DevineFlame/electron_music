@@ -1,0 +1,55 @@
+<template class="section-template">
+<div id="welcome">
+	<div class="Row">
+	  <div class="Column">
+	  		<div id="add_directory">
+				<input type="file"   id="curr_music_dir"  webkitdirectory />
+			</div>
+		 <div id="music_list">
+		 	<ul id="sp-list">
+		 		
+		 	</ul>
+		 </div>
+	  </div>
+	  <div class="Column1">
+	  	<div id="player">
+		 	  player
+		 </div>
+	  </div>	
+	
+		 
+	</div>
+
+</div>
+
+<script>
+var path = require('path');	
+ const fs = require("fs");
+ var directoryPath = path.join(__dirname, '.');
+ dir='.';
+ $("#curr_music_dir").change( function (){
+   directoryPath=document.getElementById("curr_music_dir").files[0].path; 
+   $("#music_list ul").empty();
+	 
+   fs.readdir(directoryPath, function (err, files) {
+//handling error
+if (err) {
+return console.log('Unable to scan directory: ' + err);
+}
+//listing all files using forEach
+files.forEach(function (file) {
+// Do whatever you want to do with the file
+console.log(file);
+str="<li>"+file+"</li";
+$("#music_list ul").append(str);
+});
+});
+    });   
+   
+   
+$('#music_list').scrollpanel({
+    prefix: 'sp-'
+});
+
+</script>
+</template>
